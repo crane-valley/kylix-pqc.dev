@@ -25,13 +25,17 @@ const svg = `
   <rect x="0" y="0" width="1200" height="4" fill="url(#text-gradient)"/>
 
   <!-- Title -->
-  <text x="600" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="url(#text-gradient)" text-anchor="middle">kylix-pqc</text>
+  <text x="600" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="url(#text-gradient)" text-anchor="middle">kylix-pqc</text>
 
   <!-- Tagline -->
-  <text x="600" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="36" fill="#e6edf3" text-anchor="middle">Post-Quantum Cryptography for Rust</text>
+  <text x="600" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="36" fill="#e6edf3" text-anchor="middle">Post-Quantum Cryptography for Rust</text>
 
   <!-- Features -->
-  <text x="600" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#8b949e" text-anchor="middle">ML-KEM (FIPS 203) • no_std • Constant-Time • NIST ACVP Tested</text>
+  <text x="600" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#8b949e" text-anchor="middle">ML-KEM (FIPS 203) • no_std • Constant-Time • NIST ACVP Tested</text>
+
+  <!-- CTA Button -->
+  <rect x="475" y="420" width="250" height="56" rx="8" fill="url(#text-gradient)"/>
+  <text x="600" y="458" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="600" fill="#0d1117" text-anchor="middle">Get Started →</text>
 
   <!-- URL -->
   <text x="600" y="560" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#58a6ff" text-anchor="middle">kylix-pqc.dev</text>
