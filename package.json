@@ -4,11 +4,15 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "build": "node scripts/generate-og-image.mjs && astro build",
+    "preview": "astro preview",
+    "generate:og": "node scripts/generate-og-image.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
     "astro": "^5.2.3"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }
