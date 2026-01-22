@@ -95,33 +95,22 @@ kylix decaps --key mykey.sec -i ciphertext.bin</code></pre>
           <div class="example-block">
             <h3>Key Encapsulation (ML-KEM)</h3>
             <pre><code>use kylix_pqc::ml_kem::{'{'}MlKem768, Kem{'}'};
-use rand::rngs::OsRng;
 
-// Generate a key pair
-let (dk, ek) = MlKem768::keygen(&mut OsRng)?;
+let (dk, ek) = MlKem768::keygen(&mut rng)?;
+let (ct, ss1) = MlKem768::encaps(&ek, &mut rng)?;
+let ss2 = MlKem768::decaps(&dk, &ct)?;
 
-// Encapsulate a shared secret
-let (ct, ss_sender) = MlKem768::encaps(&ek, &mut OsRng)?;
-
-// Decapsulate the shared secret
-let ss_receiver = MlKem768::decaps(&dk, &ct)?;
-
-assert_eq!(ss_sender.as_ref(), ss_receiver.as_ref());</code></pre>
+assert_eq!(ss1.as_ref(), ss2.as_ref());</code></pre>
           </div>
           <div class="example-block">
             <h3>Digital Signatures (ML-DSA)</h3>
             <pre><code>use kylix_pqc::ml_dsa::{'{'}MlDsa65, Signer{'}'};
-use rand::rngs::OsRng;
 
-// Generate a signing key pair
-let (sk, pk) = MlDsa65::keygen(&mut OsRng)?;
+let (sk, pk) = MlDsa65::keygen(&mut rng)?;
+let msg = b"Hello, post-quantum world!";
+let sig = MlDsa65::sign(&sk, msg)?;
 
-// Sign a message
-let message = b"Hello, post-quantum world!";
-let signature = MlDsa65::sign(&sk, message)?;
-
-// Verify the signature
-MlDsa65::verify(&pk, message, &signature)?;</code></pre>
+MlDsa65::verify(&pk, msg, &sig)?;</code></pre>
           </div>
         </div>
       </div>
