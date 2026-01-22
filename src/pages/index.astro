@@ -1,0 +1,264 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="kylix-pqc - Post-Quantum Cryptography for Rust"
+  description="A post-quantum cryptography library implementing NIST FIPS standards in pure Rust"
+>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>kylix-pqc</h1>
+        <p class="tagline">Post-Quantum Cryptography for Rust</p>
+        <p class="description">
+          A pure Rust implementation of NIST FIPS post-quantum cryptography standards.
+          Secure your applications against quantum computing threats.
+        </p>
+        <div class="cta">
+          <a href="https://docs.rs/kylix-pqc" class="btn btn-primary">Documentation</a>
+          <a href="https://github.com/crane-valley/kylix" class="btn btn-secondary">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="install">
+      <div class="container">
+        <h2>Quick Start</h2>
+        <pre><code>cargo add kylix-pqc</code></pre>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <h2>Features</h2>
+        <div class="feature-grid">
+          <div class="feature">
+            <h3>ML-KEM (FIPS 203)</h3>
+            <p>Module-Lattice-Based Key Encapsulation Mechanism with security levels 1, 3, and 5.</p>
+          </div>
+          <div class="feature">
+            <h3>no_std Compatible</h3>
+            <p>Works in embedded systems and WebAssembly environments without the standard library.</p>
+          </div>
+          <div class="feature">
+            <h3>Constant-Time</h3>
+            <p>Side-channel resistant implementations to prevent timing attacks.</p>
+          </div>
+          <div class="feature">
+            <h3>Secure Memory</h3>
+            <p>Automatic zeroization of sensitive data when no longer needed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="example">
+      <div class="container">
+        <h2>Example</h2>
+        <pre><code>use kylix_pqc::ml_kem::{'{'}MlKem768, Kem{'}'};
+use rand::rngs::OsRng;
+
+// Generate a key pair
+let (dk, ek) = MlKem768::keygen(&mut OsRng)?;
+
+// Encapsulate a shared secret
+let (ct, ss_sender) = MlKem768::encaps(&ek, &mut OsRng)?;
+
+// Decapsulate the shared secret
+let ss_receiver = MlKem768::decaps(&dk, &ct)?;
+
+assert_eq!(ss_sender.as_ref(), ss_receiver.as_ref());</code></pre>
+      </div>
+    </section>
+
+    <section class="links">
+      <div class="container">
+        <h2>Resources</h2>
+        <ul>
+          <li><a href="https://crates.io/crates/kylix-pqc">crates.io</a></li>
+          <li><a href="https://docs.rs/kylix-pqc">API Documentation</a></li>
+          <li><a href="https://github.com/crane-valley/kylix">Source Code</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/fips/203/final">FIPS 203 Specification</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 <a href="https://github.com/crane-valley">Crane Valley</a>. MIT License.</p>
+      </div>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  main {
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  section {
+    padding: 4rem 0;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-accent);
+  }
+
+  .hero {
+    padding: 6rem 0;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .tagline {
+    font-size: 1.5rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+
+  .description {
+    max-width: 600px;
+    margin: 1.5rem auto;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+  }
+
+  .cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .btn:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: var(--color-bg);
+  }
+
+  .btn-primary:hover {
+    background: #79b8ff;
+  }
+
+  .btn-secondary {
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-text-muted);
+  }
+
+  .install {
+    text-align: center;
+    background: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .install pre {
+    display: inline-block;
+    font-size: 1.1rem;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature {
+    padding: 1.5rem;
+    background: var(--color-bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+  }
+
+  .feature p {
+    color: var(--color-text-muted);
+  }
+
+  .example {
+    background: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .example pre {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .links ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    justify-content: center;
+  }
+
+  .links a {
+    font-size: 1.1rem;
+  }
+
+  footer {
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .tagline {
+      font-size: 1.25rem;
+    }
+
+    .cta {
+      flex-direction: column;
+    }
+
+    section {
+      padding: 3rem 0;
+    }
+  }
+</style>
