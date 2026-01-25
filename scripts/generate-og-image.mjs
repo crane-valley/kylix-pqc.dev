@@ -31,7 +31,7 @@ const svg = `
   <text x="600" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="36" fill="#e6edf3" text-anchor="middle">Post-Quantum Cryptography for Rust</text>
 
   <!-- Features -->
-  <text x="600" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#8b949e" text-anchor="middle">ML-KEM (FIPS 203) • no_std • Constant-Time • NIST ACVP Tested</text>
+  <text x="600" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#8b949e" text-anchor="middle">FIPS 203/204/205 • no_std • Constant-Time • NIST ACVP Tested</text>
 
   <!-- CTA Button -->
   <rect x="475" y="420" width="250" height="56" rx="8" fill="url(#text-gradient)"/>
