@@ -12,3 +12,7 @@ Marketing website for [kylix-pqc](https://github.com/crane-valley/kylix). Built 
 - `src/pages/index.astro` - Homepage
 - `scripts/generate-og-image.mjs` - OG image generator (edit SVG here)
 - `public/og-image.png` - Auto-generated, don't edit manually
+
+## Deployment
+
+Hosted on Cloudflare Pages. Auto-deploys on push to `main`.
