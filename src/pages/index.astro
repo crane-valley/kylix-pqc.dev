@@ -359,8 +359,16 @@ SlhDsaShake128f::verify(&pk, msg, &sig)?;</code></pre>
     background: var(--color-border);
   }
 
-  .copy-btn.copied {
+  .copy-btn:focus {
+    outline: none;
+    background: transparent;
+  }
+
+  .copy-btn.copied,
+  .copy-btn.copied:hover,
+  .copy-btn.copied:focus {
     color: var(--color-accent);
+    background: transparent;
   }
 
   .copy-btn .check-icon {
