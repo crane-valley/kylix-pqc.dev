@@ -31,8 +31,12 @@ import Layout from '../layouts/Layout.astro';
             <pre><code>cargo add kylix-pqc</code></pre>
           </div>
           <div class="install-option">
-            <h3>CLI Tool</h3>
-            <pre><code>cargo install kylix-cli</code></pre>
+            <h3>CLI (Linux/macOS)</h3>
+            <pre><code>curl -LsSf https://github.com/crane-valley/kylix-cli/releases/latest/download/kylix-cli-installer.sh | sh</code></pre>
+          </div>
+          <div class="install-option">
+            <h3>CLI (Windows)</h3>
+            <pre><code>irm https://github.com/crane-valley/kylix-cli/releases/latest/download/kylix-cli-installer.ps1 | iex</code></pre>
           </div>
         </div>
       </div>
@@ -73,6 +77,10 @@ import Layout from '../layouts/Layout.astro';
           <div class="feature">
             <h3>Fuzz Tested</h3>
             <p>Comprehensive fuzzing infrastructure for robustness verification.</p>
+          </div>
+          <div class="feature">
+            <h3>SIMD Optimized</h3>
+            <p>Hardware-accelerated performance with AVX2 (x86_64) and NEON (ARM64) optimizations.</p>
           </div>
         </div>
       </div>
@@ -136,7 +144,9 @@ SlhDsaShake128f::verify(&pk, msg, &sig)?;</code></pre>
         <ul>
           <li><a href="https://crates.io/crates/kylix-pqc">crates.io</a></li>
           <li><a href="https://docs.rs/kylix-pqc">API Documentation</a></li>
-          <li><a href="https://github.com/crane-valley/kylix">Source Code</a></li>
+          <li><a href="https://github.com/crane-valley/kylix">Library Source</a></li>
+          <li><a href="https://github.com/crane-valley/kylix-cli">CLI Source</a></li>
+          <li><a href="https://crane-valley.github.io/kylix/dev/bench/">Benchmarks</a></li>
           <li><a href="https://csrc.nist.gov/pubs/fips/203/final">FIPS 203 (ML-KEM)</a></li>
           <li><a href="https://csrc.nist.gov/pubs/fips/204/final">FIPS 204 (ML-DSA)</a></li>
           <li><a href="https://csrc.nist.gov/pubs/fips/205/final">FIPS 205 (SLH-DSA)</a></li>
@@ -254,9 +264,9 @@ SlhDsaShake128f::verify(&pk, msg, &sig)?;</code></pre>
 
   .install-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
   }
 
@@ -270,7 +280,8 @@ SlhDsaShake128f::verify(&pk, msg, &sig)?;</code></pre>
 
   .install pre {
     display: inline-block;
-    font-size: 1.1rem;
+    font-size: 0.85rem;
+    word-break: break-all;
   }
 
   .cli {
