@@ -31,15 +31,26 @@ import Layout from '../layouts/Layout.astro';
             <pre><code>cargo add kylix-pqc</code></pre>
           </div>
           <div class="install-cli">
-            <h3>CLI</h3>
             <div class="cli-commands">
               <div class="cli-command">
-                <span class="cli-label">Linux/macOS</span>
-                <pre><code>curl -LsSf https://github.com/crane-valley/kylix-cli/releases/latest/download/kylix-cli-installer.sh | sh</code></pre>
+                <h3>CLI (Linux/macOS)</h3>
+                <div class="code-block">
+                  <pre><code>curl -LsSf https://github.com/crane-valley/kylix-cli/releases/latest/download/kylix-cli-installer.sh | sh</code></pre>
+                  <button class="copy-btn" aria-label="Copy to clipboard">
+                    <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </button>
+                </div>
               </div>
               <div class="cli-command">
-                <span class="cli-label">Windows</span>
-                <pre><code>irm https://github.com/crane-valley/kylix-cli/releases/latest/download/kylix-cli-installer.ps1 | iex</code></pre>
+                <h3>CLI (Windows)</h3>
+                <div class="code-block">
+                  <pre><code>irm https://github.com/crane-valley/kylix-cli/releases/latest/download/kylix-cli-installer.ps1 | iex</code></pre>
+                  <button class="copy-btn" aria-label="Copy to clipboard">
+                    <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -276,7 +287,7 @@ SlhDsaShake128f::verify(&pk, msg, &sig)?;</code></pre>
   }
 
   .install-library h3,
-  .install-cli h3 {
+  .cli-command h3 {
     color: var(--color-text-muted);
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -300,8 +311,8 @@ SlhDsaShake128f::verify(&pk, msg, &sig)?;</code></pre>
   .cli-commands {
     display: inline-flex;
     flex-direction: column;
-    gap: 1rem;
-    text-align: left;
+    gap: 1.5rem;
+    text-align: center;
   }
 
   .cli-command {
@@ -310,18 +321,66 @@ SlhDsaShake128f::verify(&pk, msg, &sig)?;</code></pre>
     gap: 0.5rem;
   }
 
-  .cli-label {
-    font-size: 0.8rem;
-    color: var(--color-accent);
-    font-weight: 500;
+  .code-block {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
   }
 
-  .cli-command pre {
+  .code-block pre {
+    text-align: left;
     font-size: 0.85rem;
     overflow-x: auto;
     margin: 0;
     white-space: nowrap;
     max-width: calc(100vw - 3rem);
+    padding-right: 3rem;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .copy-btn:hover {
+    color: var(--color-text);
+    background: var(--color-border);
+  }
+
+  .copy-btn:focus {
+    outline: none;
+    background: transparent;
+  }
+
+  .copy-btn.copied,
+  .copy-btn.copied:hover,
+  .copy-btn.copied:focus {
+    color: var(--color-accent);
+    background: transparent;
+  }
+
+  .copy-btn .check-icon {
+    display: none;
+  }
+
+  .copy-btn.copied .copy-icon {
+    display: none;
+  }
+
+  .copy-btn.copied .check-icon {
+    display: block;
   }
 
   .cli {
@@ -416,3 +475,14 @@ SlhDsaShake128f::verify(&pk, msg, &sig)?;</code></pre>
     }
   }
 </style>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const code = btn.parentElement.querySelector('code').textContent;
+      await navigator.clipboard.writeText(code);
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 2000);
+    });
+  });
+</script>
