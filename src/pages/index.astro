@@ -3,17 +3,16 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="kylix-pqc - Post-Quantum Cryptography Library for Rust"
-  description="A pure Rust implementation of NIST FIPS post-quantum cryptography standards. Protect your applications against quantum computing threats with ML-KEM (FIPS 203), ML-DSA (FIPS 204), and SLH-DSA (FIPS 205)."
+  title="kylix-pqc - Experimental Post-Quantum Cryptography Library for Rust"
+  description="An experimental pure Rust implementation of NIST FIPS post-quantum cryptography standards. ML-KEM (FIPS 203), ML-DSA (FIPS 204), and SLH-DSA (FIPS 205). Not audited - for research and learning only."
 >
   <main>
     <section class="hero">
       <div class="container">
         <h1>kylix-pqc</h1>
-        <p class="tagline">Post-Quantum Cryptography for Rust</p>
+        <p class="tagline">Experimental Post-Quantum Cryptography for Rust</p>
         <p class="description">
-          A pure Rust implementation of NIST FIPS post-quantum cryptography standards.
-          Secure your applications against quantum computing threats.
+          A pure Rust implementation of NIST FIPS post-quantum cryptography standards (experimental, not audited).
         </p>
         <div class="cta">
           <a href="https://docs.rs/kylix-pqc" class="btn btn-primary">Documentation</a>
@@ -22,9 +21,29 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
+    <div class="security-notice">
+      <div class="container">
+        <h2>Security Notice</h2>
+        <p>
+          This project is experimental and has <strong>NOT been audited</strong>. It is <strong>NOT intended for production use</strong>.
+          Passing NIST test vectors does not guarantee security.
+        </p>
+        <p>
+          This is an AI-assisted implementation experiment, not a cryptographic reference.
+        </p>
+        <p>
+          For production-ready PQC, use RustCrypto's
+          <a href="https://crates.io/crates/ml-kem">ml-kem</a>,
+          <a href="https://crates.io/crates/ml-dsa">ml-dsa</a>, and
+          <a href="https://crates.io/crates/slh-dsa">slh-dsa</a>.
+        </p>
+      </div>
+    </div>
+
     <section class="install">
       <div class="container">
         <h2>Quick Start</h2>
+        <p class="install-warning">For experiments only. Not audited. Do not use in production.</p>
         <div class="install-options">
           <div class="install-library">
             <h3>Library</h3>
@@ -76,7 +95,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <div class="feature">
             <h3>NIST ACVP Tested</h3>
-            <p>Validated against official NIST test vectors for compliance assurance.</p>
+            <p>Passes official NIST test vectors. Test vectors verify correctness, not security.</p>
           </div>
           <div class="feature">
             <h3>no_std Compatible</h3>
@@ -84,20 +103,38 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <div class="feature">
             <h3>Constant-Time</h3>
-            <p>Side-channel resistant implementations to prevent timing attacks.</p>
+            <p>Best-effort constant-time implementations. Not formally verified against side-channel attacks.</p>
           </div>
           <div class="feature">
-            <h3>Secure Memory</h3>
-            <p>Automatic zeroization of sensitive data when no longer needed.</p>
+            <h3>Memory Zeroization</h3>
+            <p>Automatic zeroization of sensitive data when no longer needed via zeroize crate.</p>
           </div>
           <div class="feature">
             <h3>Fuzz Tested</h3>
-            <p>Comprehensive fuzzing infrastructure for robustness verification.</p>
+            <p>Fuzzing infrastructure for robustness. Fuzzing helps find bugs but is not a security guarantee.</p>
           </div>
           <div class="feature">
             <h3>SIMD Optimized</h3>
             <p>Hardware-accelerated performance with AVX2 (x86_64) and NEON (ARM64) optimizations.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="security">
+      <div class="container">
+        <h2>Security Considerations</h2>
+        <ul class="security-list">
+          <li><strong>Not audited</strong> - This library has not been professionally audited or formally verified.</li>
+          <li><strong>Best-effort constant-time</strong> - Constant-time behavior is not formally verified and may vary by platform.</li>
+          <li><strong>Test vectors are not security proofs</strong> - Passing NIST test vectors verifies correctness, not security.</li>
+          <li><strong>AI-assisted implementation</strong> - This is an experimental AI-assisted implementation for learning purposes.</li>
+          <li><strong>Report vulnerabilities privately</strong> - If you find a security issue, do not open a public issue. Contact <a href="mailto:security@crane-valley.co.jp">security@crane-valley.co.jp</a> or see our <a href="https://github.com/crane-valley/kylix/blob/main/SECURITY.md">security policy</a>.</li>
+        </ul>
+        <div class="security-links">
+          <a href="https://github.com/crane-valley/kylix" class="btn btn-secondary">Library Repository</a>
+          <a href="https://github.com/crane-valley/kylix-cli" class="btn btn-secondary">CLI Repository</a>
+          <a href="https://github.com/crane-valley/kylix/blob/main/SECURITY.md" class="btn btn-secondary">Security Policy</a>
         </div>
       </div>
     </section>
@@ -191,6 +228,49 @@ SlhDsaShake128f::verify(&pk, msg, &sig)?;</code></pre>
 
   section {
     padding: 4rem 0;
+  }
+
+  .security-notice {
+    background: linear-gradient(135deg, #5c2d0080, #7c3a0080);
+    border-bottom: 2px solid #d97706;
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+
+  .security-notice h2 {
+    color: #fbbf24;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .security-notice p {
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .security-notice p:last-child {
+    margin-bottom: 0;
+  }
+
+  .security-notice strong {
+    color: #fbbf24;
+  }
+
+  .security-notice a {
+    color: #93c5fd;
+  }
+
+  .install-warning {
+    color: #fbbf24;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 1rem;
+    background: #5c2d0060;
+    border-radius: 6px;
+    display: inline-block;
   }
 
   h1 {
@@ -407,6 +487,42 @@ SlhDsaShake128f::verify(&pk, msg, &sig)?;</code></pre>
 
   .feature p {
     color: var(--color-text-muted);
+  }
+
+  .security {
+    background: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .security-list {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  .security-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  .security-list li:last-child {
+    border-bottom: none;
+  }
+
+  .security-list strong {
+    color: var(--color-text);
+  }
+
+  .security-list a {
+    color: var(--color-primary);
+  }
+
+  .security-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
   }
 
   .example {
